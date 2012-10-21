@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" columnCount="2" pageWidth="612" pageHeight="792" columnWidth="286" leftMargin="20" rightMargin="20" topMargin="25" bottomMargin="4" uuid="40fea505-14ae-43cd-ab9a-d90e47b1d961">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select pj.razao_social, e.logradouro, e.numero, e.bairro, e.cep, e.cidade, e.uf
+  from global.pessoa_juridica pj
+  join global.pessoa p on p.id = pj.id
+  join global.endereco e on e.id = p._endereco
+  left join global.cnae_pessoa_juridica cp on cp._pessoa_juridica = pj.id
+  where e.uf = 'PR'
+    and e.cidade = 'CURITIBA'
+    and (pj._cnae in (69117, 7020400, 6920601, 6920602, 9411100) or cp._cnae in (69117, 7020400, 6920601, 6920602, 9411100))
+    group by pj.razao_social, e.logradouro, e.numero, e.bairro, e.cep, e.cidade, e.uf
+]]>
+	</queryString>
+	<field name="razao_social" class="java.lang.String"/>
+	<field name="logradouro" class="java.lang.String"/>
+	<field name="numero" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="cep" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="uf" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="76" splitType="Stretch">
+			<textField>
+				<reportElement uuid="73fb159f-e2ce-4af7-baf1-39f2987b0a92" x="19" y="13" width="207" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{razao_social}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="48d489f0-ed0a-4cb2-b193-43d131ad3883" x="19" y="31" width="45" height="10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Endereço "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="538663f7-65a2-4431-a5c8-bd6ce73eefcf" x="65" y="31" width="147" height="10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{logradouro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="32f0423a-11fd-4b38-9b6a-3ec60781b0e6" x="19" y="45" width="38" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Número "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b6975cad-c1bb-41eb-9d6c-48e64314d8e2" x="58" y="45" width="50" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="eda21ed3-1477-426e-a796-8f740a92cb0d" x="144" y="46" width="96" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="82da7e28-d47c-49cf-9e19-080a76fa393f" x="110" y="46" width="34" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Bairro "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="434371aa-51a7-4099-b66f-6ffe517ecab2" x="44" y="59" width="50" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c0992720-dff3-447a-9c07-f0b4a8588182" x="19" y="59" width="25" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CEP "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3a8f02fa-330f-4dfe-8fd7-f78a142d05a6" x="94" y="59" width="35" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cidade "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f0162e53-1157-4d42-ae85-e87e29f84711" x="129" y="59" width="73" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a3fe0875-7a45-44eb-bd23-e8da14107d06" x="203" y="59" width="20" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["UF "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3f00db27-64a4-453e-be3b-fc9ec2c551bf" x="223" y="58" width="55" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{uf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
