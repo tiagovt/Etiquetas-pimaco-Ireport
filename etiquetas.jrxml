@@ -11,9 +11,8 @@
   left join global.cnae_pessoa_juridica cp on cp._pessoa_juridica = pj.id
   where e.uf = 'PR'
     and e.cidade = 'CURITIBA'
-    and (pj._cnae in (69117, 7020400, 6920601, 6920602, 9411100) or cp._cnae in (69117, 7020400, 6920601, 6920602, 9411100))
-    group by pj.razao_social, e.logradouro, e.numero, e.bairro, e.cep, e.cidade, e.uf
-]]>
+    and (pj._cnae in (6920602, 6920601, 6911701) or cp._cnae in (6920602, 6920601, 6911701))
+    group by pj.razao_social, e.logradouro, e.numero, e.bairro, e.cep, e.cidade, e.uf]]>
 	</queryString>
 	<field name="razao_social" class="java.lang.String"/>
 	<field name="logradouro" class="java.lang.String"/>
